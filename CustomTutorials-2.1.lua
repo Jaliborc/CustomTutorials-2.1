@@ -17,7 +17,7 @@ You should have received a copy of the GNU General Public License
 along with CustomTutorials. If not, see <http://www.gnu.org/licenses/>.
 --]]
 
-local Lib = LibStub:NewLibrary('CustomTutorials-2.1', 3)
+local Lib = LibStub:NewLibrary('CustomTutorials-2.1', 4)
 if Lib then
 	Lib.NewFrame, Lib.NewButton, Lib.UpdateFrame = nil
 	Lib.numFrames = Lib.numFrames or 1
@@ -129,6 +129,7 @@ local function NewFrame(data)
 	frame.Inset.Bg:SetTexture(0,0,0)
 	frame.text:SetJustifyH('LEFT')
 	frame:SetFrameStrata('DIALOG')
+	frame:SetClampedToScreen(true)
 	frame:EnableMouse(true)
 	frame:SetToplevel(true)
 	frame:SetWidth(350)
