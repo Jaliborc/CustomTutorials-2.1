@@ -17,7 +17,7 @@ You should have received a copy of the GNU General Public License
 along with CustomTutorials. If not, see <http://www.gnu.org/licenses/>.
 --]]
 
-local Lib = LibStub:NewLibrary('CustomTutorials-2.1', 4)
+local Lib = LibStub:NewLibrary('CustomTutorials-2.1', 5)
 if Lib then
 	Lib.NewFrame, Lib.NewButton, Lib.UpdateFrame = nil
 	Lib.numFrames = Lib.numFrames or 1
@@ -36,6 +36,11 @@ local function UpdateFrame(frame, i)
 	local data = frame.data[i]
 	if not data then
 		return
+	end
+
+	-- Callback
+	if frame.data.onShow then
+		frame.data.onShow(frame.data, i)
 	end
 
 	-- Frame
@@ -84,9 +89,10 @@ local function UpdateFrame(frame, i)
 	end
 
 	-- Save
-	local sv = frame.data.savedvariable
+	local sv = frame.data.key or frame.data.savedvariable
 	if sv then
-		_G[sv] = max(i, _G[sv] or 0)
+		local table = frame.data.key and frame.data.savedvariable or _G
+		table[sv] = max(i, table[sv] or 0)
 	end
 	
 	if i < (frame.unlocked or 0) then
@@ -172,18 +178,19 @@ function Lib:RegisterTutorials(data)
 	end
 end
 
-function Lib:TriggerTutorial(index, force)
+function Lib:TriggerTutorial(index, maxAdvance)
 	assert(type(index) == 'number', 'TriggerTutorial: 2nd arg must be a number', 2)
 	assert(self, 'RegisterTutorials: 1st arg was not provided', 2)
 
 	local frame = Lib.frames[self]
 	if frame then
-		local sv = frame.data.savedvariable
-		local last = sv and _G[sv] or 0
+		local sv = frame.data.key or frame.data.savedvariable
+		local table = frame.data.key and frame.data.savedvariable or _G
+		local last = sv and table[sv] or 0
 		
 		if index > last then
 			frame.unlocked = index
-			UpdateFrame(frame, (force or not sv) and index or last + 1)
+			UpdateFrame(frame, (maxAdvance == true or not sv) and index or last + (maxAdvance or 1))
 		end
 	end
 end
@@ -193,10 +200,12 @@ function Lib:ResetTutorials()
 
 	local frame = Lib.frames[self]
 	if frame then
-		local sv = frame.data.savedvariable
+		local sv = frame.data.key or frame.data.savedvariable
 		if sv then
-			_G[sv] = false
+			local table = frame.data.key and frame.data.savedvariable or _G
+			table[sv] = false
 		end
+		
 		frame:Hide()
 	end
 end
