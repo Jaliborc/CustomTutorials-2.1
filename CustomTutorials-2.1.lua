@@ -17,7 +17,7 @@ You should have received a copy of the GNU General Public License
 along with CustomTutorials. If not, see <http://www.gnu.org/licenses/>.
 --]]
 
-local Lib = LibStub:NewLibrary('CustomTutorials-2.1', 5)
+local Lib = LibStub:NewLibrary('CustomTutorials-2.1', 6)
 if Lib then
 	Lib.NewFrame, Lib.NewButton, Lib.UpdateFrame = nil
 	Lib.numFrames = Lib.numFrames or 1
@@ -132,7 +132,7 @@ local function NewFrame(data)
 	
 	frame.shine:SetBackdrop({edgeFile = 'Interface\\TutorialFrame\\UI-TutorialFrame-CalloutGlow', edgeSize = 16})
 	frame.Inset:SetPoint('TOPLEFT', 4, -23)
-	frame.Inset.Bg:SetTexture(0,0,0)
+	frame.Inset.Bg:SetColorTexture(0,0,0)
 	frame.text:SetJustifyH('LEFT')
 	frame:SetFrameStrata('DIALOG')
 	frame:SetClampedToScreen(true)
@@ -158,9 +158,10 @@ local function NewFrame(data)
 	flash:SetLooping('BOUNCE')
 	frame.flash = flash
 	
-	local anim = flash:CreateAnimation('Alpha')
-	anim:SetDuration(.75)
-	anim:SetChange(-.7)
+	local step = flash:CreateAnimation('Alpha')
+	step:SetDuration(.75)
+	step:SetFromAlpha(1)
+	step:SetToAlpha(.3)
 	
 	Lib.numFrames = Lib.numFrames + 1
 	return frame
