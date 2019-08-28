@@ -1,5 +1,5 @@
 --[[
-Copyright 2010-2018 João Cardoso
+Copyright 2010-2019 João Cardoso
 CustomTutorials is distributed under the terms of the GNU General Public License (or the Lesser GPL).
 This file is part of CustomTutorials.
 
@@ -47,28 +47,28 @@ local function UpdateFrame(frame, i)
 	frame.text:SetPoint('BOTTOM', frame, 0, (data.textY or 20) + 30)
 	frame.text:SetWidth(frame:GetWidth() - (data.textX or 30) * 2)
 	frame.text:SetText(data.text)
-	
+
 	frame:ClearAllPoints()
 	frame:SetPoint(data.point or 'CENTER', data.anchor or UIParent, data.relPoint or data.point or 'CENTER', data.x or 0, data.y or 0)
 	frame:SetHeight((data.height or data.image and 220 or 100) + (data.text and frame.text:GetHeight() + (data.textY or 20) or 0))
 	frame.TitleText:SetText(data.title or frame.data.title)
 	frame.i = i
 	frame:Show()
-	
+
 	-- Image
 	for _, image in pairs(frame.images) do
 		image:Hide()
 	end
-	
+
 	if data.image then
 		local img = frame.images[i] or frame:CreateTexture()
 		img:SetPoint('TOP', frame, data.imageX or 0, (data.imageY or 40) * -1)
 		img:SetTexture(data.image)
 		img:Show()
-		
+
 		frame.images[i] = img
 	end
-	
+
 	-- Shine
 	if data.shine then
 		frame.shine:SetParent(data.shine)
@@ -80,7 +80,7 @@ local function UpdateFrame(frame, i)
 		frame.flash:Stop()
 		frame.shine:Hide()
 	end
-	
+
 	-- Buttons
 	if i == 1 then
 		frame.prev:Disable()
@@ -94,7 +94,7 @@ local function UpdateFrame(frame, i)
 		local table = frame.data.key and frame.data.savedvariable or _G
 		table[sv] = max(i, table[sv] or 0)
 	end
-	
+
 	if i < (frame.unlocked or 0) then
 		frame.next:Enable()
 	else
@@ -129,7 +129,7 @@ local function NewFrame(data)
 	frame.shine = CreateFrame('Frame')
 	frame.images = {}
 	frame.data = data
-	
+
 	frame.shine:SetBackdrop({edgeFile = 'Interface\\TutorialFrame\\UI-TutorialFrame-CalloutGlow', edgeSize = 16})
 	frame.Inset:SetPoint('TOPLEFT', 4, -23)
 	frame.Inset.Bg:SetColorTexture(0,0,0)
@@ -143,26 +143,26 @@ local function NewFrame(data)
 		frame.flash:Stop()
 		frame.shine:Hide()
 	end)
-	
+
 	for i = 1, frame.shine:GetNumRegions() do
 		select(i, frame.shine:GetRegions()):SetBlendMode('ADD')
 	end
-	
+
 	local top = frame:CreateTexture() -- the blue top
 	top:SetTexture('Interface\\TutorialFrame\\UI-Tutorial-Frame')
 	top:SetTexCoord(0.0019531, 0.7109375, 0.0019531, 0.15625)
 	top:SetPoint('TOP', -7, 12)
 	top:SetSize(364, 80)
-	
+
 	local flash = frame.shine:CreateAnimationGroup()
 	flash:SetLooping('BOUNCE')
 	frame.flash = flash
-	
+
 	local step = flash:CreateAnimation('Alpha')
 	step:SetDuration(.75)
 	step:SetFromAlpha(1)
 	step:SetToAlpha(.3)
-	
+
 	Lib.numFrames = Lib.numFrames + 1
 	return frame
 end
@@ -188,7 +188,7 @@ function Lib:TriggerTutorial(index, maxAdvance)
 		local sv = frame.data.key or frame.data.savedvariable
 		local table = frame.data.key and frame.data.savedvariable or _G
 		local last = sv and table[sv] or 0
-		
+
 		if index > last then
 			frame.unlocked = index
 			UpdateFrame(frame, (maxAdvance == true or not sv) and index or last + (maxAdvance or 1))
@@ -206,7 +206,7 @@ function Lib:ResetTutorials()
 			local table = frame.data.key and frame.data.savedvariable or _G
 			table[sv] = false
 		end
-		
+
 		frame:Hide()
 	end
 end
