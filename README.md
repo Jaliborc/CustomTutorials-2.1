@@ -12,7 +12,7 @@ A framework that makes creating interactive tutorials. It handles both displayin
 :warning: Note that all methods use a dot `.` syntax, instead of the more common `:` syntax.
 
 ### Usage Example
-First of all, you must register the new tutorials for you addon:
+First of all, you must register the new tutorial for you addon:
 
 ``` 
 Lib.RegisterTutorials("MyAddon", {
@@ -28,9 +28,9 @@ Lib.RegisterTutorials("MyAddon", {
 })
 ``` 
 
-Finally, you need to tell CustomTutorials when you want the tutorials to be shown. If you provided the `savedvariable` argument, you won't have to worry about which ones the user has already seen neither to save that information. CustomTutorials will handle that for you:
+Finally, you need to tell the library when you want the tutorial to be shown. If you provided the `savedvariable` argument, you won't have to worry about which panels the user has already seen neither to save that information. CustomTutorials will handle that for you:
 
 ``` 
-  -- Shows up to tutorial #3 if the user has not seen it already
+  -- Shows up to panel #3 if the user has not seen it already
   MyAddon:TriggerTutorial(3)
 ``` 
