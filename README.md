@@ -9,12 +9,12 @@ A framework that makes creating interactive tutorials. It handles both displayin
 | .ResetTutorials(id) | Resets progression in a given tutorial. |
 | .GetTutorials(id) | Returns `data` originally registered for a given tutorial. |
 
-:warning: Note that all methods use a dot `.` syntax, instead of the more common `:` syntax.
+:warning: Note that, for legacy reasons, all methods use a dot `.` syntax, instead of the more common `:` syntax.
 
 ### Usage Example
 First of all, you must register the new tutorial for you addon:
 
-``` 
+```
 Lib.RegisterTutorials("MyAddon", {
   savedvariable = "MyAddon_TutorialsSavedVariable",
   title = "MyAddons",
@@ -26,11 +26,11 @@ Lib.RegisterTutorials("MyAddon", {
      text = "Bye",
   }
 })
-``` 
+```
 
 Finally, you need to tell the library when you want the tutorial to be shown. If you provided the `savedvariable` argument, you won't have to worry about which panels the user has already seen neither to save that information. CustomTutorials will handle that for you:
 
-``` 
+```
   -- Shows up to panel #3 if the user has not seen it already
   MyAddon:TriggerTutorial(3)
-``` 
+```

@@ -17,7 +17,7 @@ You should have received a copy of the GNU General Public License
 along with CustomTutorials. If not, see <http://www.gnu.org/licenses/>.
 --]]
 
-local Lib = LibStub:NewLibrary('CustomTutorials-2.1', 6)
+local Lib = LibStub:NewLibrary('CustomTutorials-2.1', 7)
 if Lib then
 	Lib.NewFrame, Lib.NewButton, Lib.UpdateFrame = nil
 	Lib.numFrames = Lib.numFrames or 1
@@ -123,17 +123,6 @@ end
 
 local function NewFrame(data)
 	local frame = CreateFrame('Frame', 'CustomTutorials'..Lib.numFrames, UIParent, 'ButtonFrameTemplate')
-	frame.text = frame:CreateFontString(nil, nil, 'GameFontHighlight')
-	frame.prev = NewButton(frame, 'Prev', -1)
-	frame.next = NewButton(frame, 'Next', 1)
-	frame.shine = CreateFrame('Frame')
-	frame.images = {}
-	frame.data = data
-
-	frame.shine:SetBackdrop({edgeFile = 'Interface\\TutorialFrame\\UI-TutorialFrame-CalloutGlow', edgeSize = 16})
-	frame.Inset:SetPoint('TOPLEFT', 4, -23)
-	frame.Inset.Bg:SetColorTexture(0,0,0)
-	frame.text:SetJustifyH('LEFT')
 	frame:SetFrameStrata('DIALOG')
 	frame:SetClampedToScreen(true)
 	frame:EnableMouse(true)
@@ -144,24 +133,44 @@ local function NewFrame(data)
 		frame.shine:Hide()
 	end)
 
-	for i = 1, frame.shine:GetNumRegions() do
-		select(i, frame.shine:GetRegions()):SetBlendMode('ADD')
-	end
+	frame.Inset:SetPoint('TOPLEFT', 4, -23)
+	frame.Inset.Bg:SetColorTexture(0,0,0)
+	frame.TopRightCorner:Hide()
+	frame.TopLeftCorner:Hide()
+	frame.PortraitFrame:Hide()
+	frame.TopBorder:Hide()
+	frame.TitleBg:Hide()
 
-	local top = frame:CreateTexture() -- the blue top
+	local top = frame:CreateTexture(nil, 'OVERLAY') -- the blue top
 	top:SetTexture('Interface\\TutorialFrame\\UI-Tutorial-Frame')
 	top:SetTexCoord(0.0019531, 0.7109375, 0.0019531, 0.15625)
-	top:SetPoint('TOP', -7, 12)
-	top:SetSize(364, 80)
+	top:SetPoint('TOPLEFT', -13, 13)
+	top:SetPoint('TOPRIGHT', 0, 13)
+	top:SetHeight(80)
 
-	local flash = frame.shine:CreateAnimationGroup()
+	local text = frame:CreateFontString(nil, nil, 'GameFontHighlight')
+	text:SetJustifyH('LEFT')
+
+	local shine = CreateFrame('Frame')
+	shine:SetBackdrop({edgeFile = 'Interface\\TutorialFrame\\UI-TutorialFrame-CalloutGlow', edgeSize = 16})
+
+	local flash = shine:CreateAnimationGroup()
 	flash:SetLooping('BOUNCE')
-	frame.flash = flash
 
 	local step = flash:CreateAnimation('Alpha')
 	step:SetDuration(.75)
 	step:SetFromAlpha(1)
 	step:SetToAlpha(.3)
+
+	for i = 1, shine:GetNumRegions() do
+		select(i, shine:GetRegions()):SetBlendMode('ADD')
+	end
+
+	frame.text, frame.shine, frame.flash = text, shine, flash
+	frame.prev = NewButton(frame, 'Prev', -1)
+	frame.next = NewButton(frame, 'Next', 1)
+	frame.images = {}
+	frame.data = data
 
 	Lib.numFrames = Lib.numFrames + 1
 	return frame
