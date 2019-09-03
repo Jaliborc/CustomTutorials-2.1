@@ -123,6 +123,8 @@ end
 
 local function NewFrame(data)
 	local frame = CreateFrame('Frame', 'CustomTutorials'..Lib.numFrames, UIParent, 'ButtonFrameTemplate')
+	frame.Inset:SetPoint('TOPLEFT', 4, -23)
+	frame.Inset.Bg:SetColorTexture(0,0,0)
 	frame:SetFrameStrata('DIALOG')
 	frame:SetClampedToScreen(true)
 	frame:EnableMouse(true)
@@ -132,14 +134,6 @@ local function NewFrame(data)
 		frame.flash:Stop()
 		frame.shine:Hide()
 	end)
-
-	frame.Inset:SetPoint('TOPLEFT', 4, -23)
-	frame.Inset.Bg:SetColorTexture(0,0,0)
-	--[[frame.TopRightCorner:Hide()
-	frame.TopLeftCorner:Hide()
-	frame.PortraitFrame:Hide()
-	frame.TopBorder:Hide()
-	frame.TitleBg:Hide()--]]
 
 	local top = (frame.NineSlice or frame):CreateTexture(nil, 'OVERLAY', nil, 5) -- the blue top
 	top:SetTexture('Interface\\TutorialFrame\\UI-Tutorial-Frame')
