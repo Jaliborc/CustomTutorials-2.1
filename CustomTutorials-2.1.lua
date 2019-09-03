@@ -135,13 +135,13 @@ local function NewFrame(data)
 
 	frame.Inset:SetPoint('TOPLEFT', 4, -23)
 	frame.Inset.Bg:SetColorTexture(0,0,0)
-	frame.TopRightCorner:Hide()
+	--[[frame.TopRightCorner:Hide()
 	frame.TopLeftCorner:Hide()
 	frame.PortraitFrame:Hide()
 	frame.TopBorder:Hide()
-	frame.TitleBg:Hide()
+	frame.TitleBg:Hide()--]]
 
-	local top = frame:CreateTexture(nil, 'OVERLAY') -- the blue top
+	local top = (frame.NineSlice or frame):CreateTexture(nil, 'OVERLAY', nil, 5) -- the blue top
 	top:SetTexture('Interface\\TutorialFrame\\UI-Tutorial-Frame')
 	top:SetTexCoord(0.0019531, 0.7109375, 0.0019531, 0.15625)
 	top:SetPoint('TOPLEFT', -13, 13)
