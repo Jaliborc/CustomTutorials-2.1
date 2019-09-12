@@ -2,6 +2,8 @@ name: tag
 
 on:
   push:
+    paths:
+      - CustomTutorials-2.1.lua
     branches:
       - master
 
