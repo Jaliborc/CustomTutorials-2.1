@@ -8,8 +8,9 @@ A framework that makes creating interactive tutorials. It handles both displayin
 | .TriggerTutorial(id, index [,maxAdvance])| Advances a step in a given tutorial and unlocks progression up to `index`.  |
 | .ResetTutorials(id) | Resets progression in a given tutorial. |
 | .GetTutorials(id) | Returns `data` originally registered for a given tutorial. |
+| :Embed(object) | Embeds the above methods into the given object. |
 
-:warning: Note that, for legacy reasons, all methods use a dot `.` syntax, instead of the more common `:` syntax.
+:warning: Note that, for legacy and embedding reasons, all methods except for `:Embed(object)` use a dot `.` syntax, instead of the more common `:` syntax.
 
 ### Usage Example
 First of all, you must register the new tutorial for you addon:
