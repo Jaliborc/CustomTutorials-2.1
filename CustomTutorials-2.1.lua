@@ -146,7 +146,7 @@ local function NewFrame()
 	local text = frame:CreateFontString(nil, nil, 'GameFontHighlight')
 	text:SetJustifyH('LEFT')
 
-	local shine = CreateFrame('Frame')
+	local shine = CreateFrame('Frame', nil, nil, BackdropTemplateMixin and "BackdropTemplate")
 	shine:SetBackdrop({edgeFile = 'Interface\\TutorialFrame\\UI-TutorialFrame-CalloutGlow', edgeSize = 16})
 
 	local flash = shine:CreateAnimationGroup()
