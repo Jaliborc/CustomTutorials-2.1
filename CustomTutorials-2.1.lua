@@ -17,7 +17,7 @@ You should have received a copy of the GNU General Public License
 along with CustomTutorials. If not, see <http://www.gnu.org/licenses/>.
 --]]
 
-local Lib = LibStub:NewLibrary('CustomTutorials-2.1', 10)
+local Lib = LibStub:NewLibrary('CustomTutorials-2.1', 11)
 if Lib then
 	Lib.NewFrame, Lib.NewButton, Lib.UpdateFrame = nil
 	Lib.numFrames = Lib.numFrames or 1
@@ -146,7 +146,7 @@ local function NewFrame()
 	local text = frame:CreateFontString(nil, nil, 'GameFontHighlight')
 	text:SetJustifyH('LEFT')
 
-	local shine = CreateFrame('Frame')
+	local shine = CreateFrame('Frame', nil, nil, BackdropTemplateMixin and 'BackdropTemplate')
 	shine:SetBackdrop({edgeFile = 'Interface\\TutorialFrame\\UI-TutorialFrame-CalloutGlow', edgeSize = 16})
 
 	local flash = shine:CreateAnimationGroup()
