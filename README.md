@@ -35,3 +35,6 @@ Finally, you need to tell the library when you want the tutorial to be shown. If
   -- Shows up to panel #3 if the user has not seen it already
   MyAddon:TriggerTutorial(3)
 ```
+
+### To Devs
+If you use this library, please list it as one of your dependencies in the CurseForge admin system. It's a big help!
