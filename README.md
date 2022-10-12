@@ -1,5 +1,5 @@
 # CustomTutorials-2.1 :exclamation:
-A framework that makes creating interactive tutorials. It handles both displaying the tutorials and saving the user progress in them.
+A framework that makes creating interactive tutorials extremely simple. It handles both displaying the tutorials and saving the user progress in them.
 
 ### API Overview
 |Name|Description|
