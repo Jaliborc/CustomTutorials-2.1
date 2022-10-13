@@ -1,7 +1,7 @@
 # CustomTutorials-2.1 :exclamation:
 A framework that makes creating interactive tutorials extremely simple. It handles both displaying the tutorials and saving the user progress in them.
 
-### API Overview
+## API Overview
 |Name|Description|
 |:--|:--|
 | .RegisterTutorials(id, data) | Registers a new tutorial with the given ID. |
@@ -12,7 +12,7 @@ A framework that makes creating interactive tutorials extremely simple. It handl
 
 :warning: Note that, for legacy and embedding reasons, all methods except for `:Embed(object)` use a dot `.` syntax, instead of the more common `:` syntax.
 
-### Usage Example
+## Usage Example
 First of all, you must register the new tutorial for you addon:
 
 ```
@@ -36,5 +36,5 @@ Finally, you need to tell the library when you want the tutorial to be shown. If
   MyAddon:TriggerTutorial(3)
 ```
 
-### To Devs
-If you use this library, please list it as one of your dependencies in the CurseForge admin system. It's a big help!
+## To Devs
+If you use this library, please list it as one of your dependencies in the CurseForge admin system. It's a big help! :+1:
