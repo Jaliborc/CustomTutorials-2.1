@@ -45,7 +45,7 @@ local function UpdateFrame(frame, i)
 	end
 
 	-- Frame
-	local title = frame.TitleText or frame.TitleContainer.TitleText
+	local title = frame.TitleContainer.TitleText
 	title:SetText(data.title or frame.data.title)
 
 	frame.text:SetPoint('BOTTOM', frame, 0, (data.textY or 20) + 30)
