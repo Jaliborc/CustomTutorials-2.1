@@ -1,4 +1,8 @@
 # CustomTutorials-2.1 :exclamation:
+[![Patreon](http://img.shields.io/badge/news%20&%20rewards-patreon-ff4d42)](https://www.patreon.com/jaliborc)
+[![Paypal](http://img.shields.io/badge/donate-paypal-1d3fe5)](https://www.paypal.me/jaliborc)
+[![Discord](http://img.shields.io/badge/discuss-discord-5865F2)](https://bit.ly/discord-jaliborc)
+
 A framework that makes creating interactive tutorials extremely simple. It handles both displaying the tutorials and saving the user progress in them.
 
 ## API Overview
