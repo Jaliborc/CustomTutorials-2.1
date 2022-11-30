@@ -45,7 +45,14 @@ local function UpdateFrame(frame, i)
 	end
 
 	-- Frame
-	local title = frame.TitleContainer.TitleText
+	local title
+
+	if LE_EXPANSION_LEVEL_CURRENT >= LE_EXPANSION_DRAGONFLIGHT then
+		title = frame.TitleContainer.TitleText
+	else
+		title = frame.TitleText or frame.TitleContainer.TitleText
+	end
+
 	title:SetText(data.title or frame.data.title)
 
 	frame.text:SetPoint('BOTTOM', frame, 0, (data.textY or 20) + 30)
