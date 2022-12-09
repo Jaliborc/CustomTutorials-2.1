@@ -40,5 +40,5 @@ Finally, you need to tell the library when you want the tutorial to be shown. If
   MyAddon:TriggerTutorial(3)
 ```
 
-## To Devs
+### :warning: Reminder!
 If you use this library, please list it as one of your dependencies in the CurseForge admin system. It's a big help! :+1:
