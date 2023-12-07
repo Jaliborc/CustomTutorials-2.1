@@ -17,7 +17,7 @@ You should have received a copy of the GNU General Public License
 along with CustomTutorials. If not, see <http://www.gnu.org/licenses/>.
 --]]
 
-local Lib = LibStub:NewLibrary('CustomTutorials-2.1', 12)
+local Lib = LibStub:NewLibrary('CustomTutorials-2.1', 13)
 if Lib then
 	Lib.NewFrame, Lib.NewButton, Lib.UpdateFrame = nil
 	Lib.numFrames = Lib.numFrames or 1
@@ -66,6 +66,7 @@ local function UpdateFrame(frame, i)
 	if data.image then
 		local img = frame.images[i] or frame:CreateTexture()
 		img:SetPoint('TOP', frame, data.imageX or 0, (data.imageY or 40) * -1)
+		img:SetSize(data.imageW or 0, data.imageH or 0)
 		img:SetTexture(data.image)
 		img:Show()
 
