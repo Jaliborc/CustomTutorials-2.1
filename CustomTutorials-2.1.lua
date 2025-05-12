@@ -17,7 +17,7 @@ You should have received a copy of the GNU General Public License
 along with CustomTutorials. If not, see <http://www.gnu.org/licenses/>.
 --]]
 
-local Lib = LibStub:NewLibrary('CustomTutorials-2.1', 13)
+local Lib = LibStub:NewLibrary('CustomTutorials-2.1', 14)
 if Lib then
 	Lib.NewFrame, Lib.NewButton, Lib.UpdateFrame = nil
 	Lib.numFrames = Lib.numFrames or 1
@@ -115,6 +115,7 @@ local function NewButton(frame, name, direction)
 	button:SetPoint('BOTTOM', 120 * direction, 2)
 	button:SetSize(26, 26)
 	button:SetScript('OnClick', function()
+		PlaySound(SOUNDKIT.IG_MAINMENU_OPTION_CHECKBOX_ON)
 		UpdateFrame(frame, frame.i + direction)
 	end)
 
@@ -127,6 +128,7 @@ end
 
 local function NewFrame()
 	local frame = CreateFrame('Frame', 'CustomTutorials'..Lib.numFrames, UIParent, 'ButtonFrameTemplate')
+	frame:HookScript('OnShow', function() PlaySound(SOUNDKIT.TUTORIAL_POPUP) end)
 	frame.Inset:SetPoint('TOPLEFT', 4, -23)
 	frame.Inset.Bg:SetColorTexture(0,0,0)
 	frame:SetFrameStrata('DIALOG')
