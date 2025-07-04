@@ -17,7 +17,7 @@ You should have received a copy of the GNU General Public License
 along with CustomTutorials. If not, see <http://www.gnu.org/licenses/>.
 --]]
 
-local Lib = LibStub:NewLibrary('CustomTutorials-2.1', 14)
+local Lib = LibStub:NewLibrary('CustomTutorials-2.1', 15)
 if Lib then
 	Lib.NewFrame, Lib.NewButton, Lib.UpdateFrame = nil
 	Lib.numFrames = Lib.numFrames or 1
@@ -75,6 +75,7 @@ local function UpdateFrame(frame, i)
 
 	-- Shine
 	if data.shine then
+		frame.shine:ClearAllPoints()
 		frame.shine:SetParent(data.shine)
 		frame.shine:SetPoint('BOTTOMRIGHT', data.shineRight or 0, data.shineBottom or 0)
 		frame.shine:SetPoint('TOPLEFT', data.shineLeft or 0, data.shineTop or 0)
