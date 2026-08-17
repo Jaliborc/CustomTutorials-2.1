@@ -1,6 +1,6 @@
 ## Title: CustomTutorials
 ## Notes: Makes creating interactive tutorials for addons extremely simple.
-## Interface: 120007, 50504, 40402, 30404, 20506, 11509
+## Interface: 120100, 50504, 40402, 30404, 20506, 11509
 ## Author: Jaliborc (João Cardoso)
 ## Category: Libraries
 ## Dependencies: LibStub
